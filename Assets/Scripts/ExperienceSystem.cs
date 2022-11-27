@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ExperienceSystem : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class ExperienceSystem : MonoBehaviour
     public Image frontExpBar;
     public Image backExpBar;
 
+    [Header("Text")]
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI expText;
+
     [Header("Experience Scaling Multipliers")]
     [Range(1f, 300f)]
     public float additionMultipler = 300;
@@ -29,6 +34,7 @@ public class ExperienceSystem : MonoBehaviour
         frontExpBar.fillAmount = currentExp / requiredExp;
         backExpBar.fillAmount = currentExp / requiredExp;
         requiredExp = CalculateRequiredExp();
+        levelText.text = "Level " + level;
     }
 
     void Update()
@@ -58,6 +64,7 @@ public class ExperienceSystem : MonoBehaviour
                 frontExpBar.fillAmount = Mathf.Lerp(frontExp, backExpBar.fillAmount, percentComplete);
             }
         }
+        expText.text = currentExp + "/" + requiredExp;
     }
     public void GainExperienceFlatRate(float expGained)
     {
@@ -73,6 +80,7 @@ public class ExperienceSystem : MonoBehaviour
         currentExp = Mathf.RoundToInt(currentExp - requiredExp);
         GetComponent<PlayerHealth>().IncreaseHealth(level);
         requiredExp = CalculateRequiredExp();
+        levelText.text = "Level " + level;
     }
 
     private int CalculateRequiredExp()

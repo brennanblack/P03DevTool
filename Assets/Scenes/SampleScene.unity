@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 110283836}
   - component: {fileID: 110283835}
   m_Layer: 5
-  m_Name: Health
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 395474053}
   - component: {fileID: 395474052}
   m_Layer: 5
-  m_Name: Level
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 450671446}
   - component: {fileID: 450671445}
   m_Layer: 5
-  m_Name: Exp
+  m_Name: ExpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,6 +1315,7 @@ MonoBehaviour:
   chipSpeed: 5
   frontHealthBar: {fileID: 853784989}
   backHealthBar: {fileID: 1833566707}
+  healthText: {fileID: 110283835}
 --- !u!114 &1021719402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,6 +1333,8 @@ MonoBehaviour:
   requiredExp: 130
   frontExpBar: {fileID: 1635967498}
   backExpBar: {fileID: 717952946}
+  levelText: {fileID: 395474052}
+  expText: {fileID: 450671445}
   additionMultipler: 300
   powerMultiplier: 2
   divisionMultiplier: 7

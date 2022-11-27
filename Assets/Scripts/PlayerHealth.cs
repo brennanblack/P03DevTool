@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("UI Images")]
     public Image frontHealthBar;
     public Image backHealthBar;
-
+    [Header("Text")]
+    public TextMeshProUGUI healthText;
     void Update()
     {
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -54,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete);
         }
+        healthText.text = Mathf.Round(health) + "/" + Mathf.Round(maxHealth);
     }
 
     public void TakeDamage(float damage)
