@@ -9,14 +9,9 @@ public class PlayerHealth : MonoBehaviour
     private float lerpTimer;
     public float maxHealth = 100f;
     public float chipSpeed = 5f;
+    [Header("UI Images")]
     public Image frontHealthBar;
     public Image backHealthBar;
-
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
