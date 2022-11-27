@@ -16,17 +16,30 @@ public class ExperienceSystem : MonoBehaviour
     public Image frontExpBar;
     public Image backExpBar;
 
+    [Header("Experience Scaling Multipliers")]
+    [Range(1f, 300f)]
+    public float additionMultipler = 300;
+    [Range(2f, 4f)]
+    public float powerMultiplier = 2;
+    [Range(7f, 14f)]
+    public float divisionMultiplier = 7;
+
     void Start()
     {
         frontExpBar.fillAmount = currentExp / requiredExp;
         backExpBar.fillAmount = currentExp / requiredExp;
+        requiredExp = CalculateRequiredExp();
     }
 
     void Update()
     {
         UpdateExperienceUI();
+        //Manually Increase Experience
         if (Input.GetKeyDown(KeyCode.Equals))
             GainExperienceFlatRate(20);
+        //If XP reaches max bar, level up
+        if (currentExp > requiredExp)
+            LevelUp();
     }
 
     public void UpdateExperienceUI()
@@ -50,5 +63,26 @@ public class ExperienceSystem : MonoBehaviour
     {
         currentExp += expGained;
         lerpTimer = 0f;
+        delayTimer = 0f;
+    }
+    private void LevelUp()
+    {
+        level++;
+        frontExpBar.fillAmount = 0f;
+        backExpBar.fillAmount = 0f;
+        currentExp = Mathf.RoundToInt(currentExp - requiredExp);
+        GetComponent<PlayerHealth>().IncreaseHealth(level);
+        requiredExp = CalculateRequiredExp();
+    }
+
+    private int CalculateRequiredExp()
+    {
+        //Runescape Experience Math Equation
+        int solveForRequiredExp = 0;
+        for(int levelCycle = 1; levelCycle <= level; levelCycle++)
+        {
+            solveForRequiredExp += (int)Mathf.Floor(levelCycle + additionMultipler * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));
+        }
+        return solveForRequiredExp / 4;
     }
 }
