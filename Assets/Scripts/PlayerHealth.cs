@@ -8,12 +8,21 @@ public class PlayerHealth : MonoBehaviour
 {
     private float health = 100f;
     private float lerpTimer;
+
+    [Header("- - -  Base Stats - - -")]
+    [Tooltip("How much health the player starts with")]
     public float maxHealth = 100f;
+    [Tooltip("How fast the health bars catch up to eachother when taking damage or gaining health back")]
     public float chipSpeed = 5f;
-    [Header("UI Images")]
+
+    [Header("- - - UI Images - - - ")]
+    [Tooltip("The image that will be used to show how much health a player has goes here. This will be the main displayed health bar.")]
     public Image frontHealthBar;
+    [Tooltip("The image that will be used to show how damage the player takes. This will be the health bar that chips away from the main health bar.")]
     public Image backHealthBar;
-    [Header("Text")]
+
+    [Header("- - - Text - - - ")]
+    [Tooltip("The text object that states the players health goes here. Use this as a placeholder for where you want the amount of health the player has to be")]
     public TextMeshProUGUI healthText;
     void Update()
     {

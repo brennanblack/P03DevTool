@@ -6,27 +6,38 @@ using TMPro;
 
 public class ExperienceSystem : MonoBehaviour
 {
+    [Header("- - - Starting Stats - - -")]
+    [Tooltip("Starting level for the player")]
     public int level;
+    [Tooltip("How much experience the player starts with")]
     public float currentExp;
+    [Tooltip("How much experience the player needs to level up at the start. The code will automatically calculate the experience for the other levels")]
     public float requiredExp;
 
     private float lerpTimer;
     private float delayTimer;
 
-    [Header("UI Images")]
+    [Header("- - - UI Images - - -")]
+    [Tooltip("The image that will be used to show how much experience a player has goes here")]
     public Image frontExpBar;
+    [Tooltip("The image that will appear before the front experience goes here")]
     public Image backExpBar;
 
-    [Header("Text")]
+    [Header("- - - Text - - -")]
+    [Tooltip("The text object that states what level you are at goes here")]
     public TextMeshProUGUI levelText;
+    [Tooltip("The text object that states how much experience you have goes here")]
     public TextMeshProUGUI expText;
 
-    [Header("Experience Scaling Multipliers")]
+    [Header("- - - Experience Scaling Multipliers - - - ")]
     [Range(1f, 300f)]
+    [Tooltip("The base value that will be added to the level then multiplied by. Increasing this will make you need more experience for each level")]
     public float additionMultipler = 300;
     [Range(2f, 4f)]
+    [Tooltip("The exponent value that the equation will multiply by. Increasing this will make you need more experience for each level")]
     public float powerMultiplier = 2;
     [Range(7f, 14f)]
+    [Tooltip("How much the total experience will be divided by at the end of the equation. Increasing this will make the player need less experience for each level")]
     public float divisionMultiplier = 7;
 
     void Start()
